@@ -1,0 +1,14 @@
+.leftMenu {
+  border-right: 1px solid #7f7e7e;
+  padding: 12px;
+}
+
+.leftMenu nav {
+  display: flex;
+  flex-direction: column;
+}
+
+.leftMenu a {
+  display: flex;
+  color: #dad5d5;
+}
