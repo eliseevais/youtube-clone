@@ -2,9 +2,9 @@
 
 import { useForm } from "react-hook-form";
 import { useState } from "react";
-import { parseYouTube } from "@/shared/libs";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { isAllowedHost, parseYouTube, YOUTUBE_DOMAINS } from "@/shared/libs";
 
 // https://www.youtube.com/watch?v=mc1Z16DzObQ&t
 
@@ -13,7 +13,29 @@ type Inputs = {
 };
 
 const schema = z.object({
-  videoUrl: z.string().min(1, { message: "Required video url" }),
+  videoUrl: z
+    .string()
+    .min(1, { message: "Required video url" })
+    .superRefine((url, ctx) => {
+      let parsedUrl: URL;
+      try {
+        parsedUrl = new URL(url);
+      } catch {
+        ctx.addIssue({
+          code: "custom",
+          message: `Field have to be a link.`,
+          input: url,
+        });
+        return;
+      }
+      if (!isAllowedHost(parsedUrl.host, YOUTUBE_DOMAINS)) {
+        ctx.addIssue({
+          code: "custom",
+          message: `Link have to be on YouTube.`,
+          input: url,
+        });
+      }
+    }),
 });
 
 export const AddVideoScreen = () => {
@@ -28,26 +50,11 @@ export const AddVideoScreen = () => {
   });
 
   const onSubmit = (data: Inputs) => {
-    const url = data.videoUrl;
-
-    if (!url) return;
-
-    let finalUrl: URL | null = null;
-
-    try {
-      finalUrl = new URL(url);
-    } catch (error) {
-      console.error("error", error);
-    }
-
-    if (!finalUrl) return;
-
-    const videoId = parseYouTube(finalUrl);
+    const url = new URL(data.videoUrl);
+    const videoId = parseYouTube(url);
     if (!videoId) return;
     setVideoId(videoId);
   };
-
-  console.log("errors", errors);
 
   const hasVideoInputUrlError = Boolean(errors.videoUrl?.message);
 
