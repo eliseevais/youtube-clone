@@ -5,8 +5,8 @@ export async function GET() {
   videosData.add("TcHYEWzxvjo");
   videosData.add("C8EF2VUTuj8");
   videosData.add("ABZYfx5v1lU");
-  videosData.add("LVy5k8lI2LM");
-  videosData.add("Ph7iu3xlpFY&t");
+  videosData.add("v4tl9bD8tQI");
+  videosData.add("O6nlnDjXzRs");
   videosData.add("Hg9W0Td6sUc");
   videosData.add("YtZZ-hxz9TI");
   videosData.add("6ASD8gHrDeE");
