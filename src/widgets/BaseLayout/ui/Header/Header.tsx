@@ -1,15 +1,28 @@
 import React from "react";
 import s from "./Header.module.css";
 import Image from "next/image";
-import Logo from "./logo.png";
 import Link from "next/link";
 
-export const Header = () => {
+type HeaderProps = {
+  profileId: string;
+};
+
+export const Header = ({ profileId }: HeaderProps) => {
   return (
     <header className={s.header}>
       <Link href="/">
-        <Image width={150} src={Logo} alt={"Logo"} />
+        <Image src={"/youtubeLogo.svg"} alt={"Logo"} width={93} height={20} />
       </Link>
+
+      <div className={s.rightPart}>
+        <Link href={"/editor/addVideo"} className={s.createVideoLink}>
+          Create
+        </Link>
+
+        <Link href={`/profile/${profileId}`} className={s.yourProfileLink}>
+          <div className={s.hiddenText}>To my profile</div>
+        </Link>
+      </div>
     </header>
   );
 };

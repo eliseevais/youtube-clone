@@ -9,7 +9,7 @@ type BaseLayoutProps = {
 export const BaseLayout = ({ children }: BaseLayoutProps) => {
   return (
     <div className={s.container}>
-      <Header />
+      <Header profileId={"123"} />
       <LeftMenu />
       {children}
     </div>
