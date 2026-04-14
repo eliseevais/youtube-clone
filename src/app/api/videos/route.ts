@@ -1,5 +1,7 @@
 const videosData = new Set<string>();
 
+// https://www.youtube.com/oembed?url=URL_ВИДЕО&format=json.
+
 export async function GET() {
   videosData.add("8hQQtm75BCk");
   videosData.add("TcHYEWzxvjo");
