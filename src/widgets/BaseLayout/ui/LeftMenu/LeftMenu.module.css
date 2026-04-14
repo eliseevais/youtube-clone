@@ -1,8 +1,33 @@
 .leftMenu {
-  border-right: 0.5px solid #7f7e7e;
+  padding: 12px;
 }
 
 .nav {
   display: flex;
   flex-direction: column;
+}
+
+.divider {
+  height: 1px;
+  width: 100%;
+  margin: 12px 0;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  height: 40px;
+  padding: 0 12px;
+  border-radius: 10px;
+  font-size: 14px;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+.icon {
+  filter: invert(1);
 }
