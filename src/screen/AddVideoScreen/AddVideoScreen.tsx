@@ -5,6 +5,7 @@ import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { isAllowedHost, parseYouTube, YOUTUBE_DOMAINS } from "@/shared/libs";
+import s from "./AddVideoScreen.module.css";
 
 // https://www.youtube.com/watch?v=mc1Z16DzObQ&t
 
@@ -71,27 +72,33 @@ export const AddVideoScreen = () => {
   const hasVideoInputUrlError = Boolean(errors.videoUrl?.message);
 
   return (
-    <div>
-      <form onSubmit={handleSubmit(onSubmit)}>
+    <div className={s.container}>
+      <form onSubmit={handleSubmit(onSubmit)} className={s.form}>
         <label>
-          <input type={"text"} placeholder={"Insert link on YpuTube"} {...register("videoUrl")} />
+          <input
+            type={"text"}
+            placeholder={"Insert link on YpuTube"}
+            {...register("videoUrl")}
+            className={s.input}
+          />
 
-          {hasVideoInputUrlError && <p style={{ color: "red" }}>{errors.videoUrl?.message}</p>}
+          {hasVideoInputUrlError && <p className={s.error}>{errors.videoUrl?.message}</p>}
         </label>
-        <button>load</button>
+        <button className={s.submitButton}>load</button>
       </form>
 
       {videoId && (
         <iframe
-          width="560"
-          height="315"
+          className={s.ifraime}
+          width="700"
+          height="350"
           src={`https://www.youtube.com/embed/${videoId}`}
           title="YouTube video player"
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           referrerPolicy="strict-origin-when-cross-origin"
           allowFullScreen
-        ></iframe>
+        />
       )}
     </div>
   );
