@@ -36,8 +36,7 @@ export const HomeScreen = () => {
                 className={s.videoImg}
                 src={`https://img.youtube.com/vi/${videoId}/hqdefault.jpg`}
                 alt={"preview"}
-                width={351}
-                height={197}
+                fill
               />
             </Link>
 

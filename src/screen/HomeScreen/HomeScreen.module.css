@@ -1,6 +1,7 @@
 .container {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding-bottom: 32px;
 }
 
 .videoBlock {
@@ -57,6 +58,12 @@
   display: flex;
   flex-direction: column;
   gap: 4px;
+}
+
+.videoPreview {
+  height: 223px;
+  width: 100%;
+  display: flex;
 }
 
 .videoPreview,
