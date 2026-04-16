@@ -46,6 +46,7 @@
   }
 
   .hiddenText {
+    overflow: hidden;
     width: 0;
     height: 10px;
     opacity: 0;
